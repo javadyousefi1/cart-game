@@ -29,7 +29,7 @@ const App: React.FC = () => {
   });
 
   const [foundItem, setFoundItem] = useState<number[]>([]);
-
+  const [key, setKey] = useState(0);
   const [closeAll, setCloseAll] = useState(false);
   const [openAll, setOpenAll] = useState(false);
 
@@ -93,13 +93,13 @@ const App: React.FC = () => {
 
     const shuffledArray = shuffleArray(JSON.parse(JSON.stringify(array)));
     setList(shuffledArray);
-    setOpenAll((prev) => !prev);
+    setKey((prev) => prev + 1);
   };
 
   return (
     <div className="flex justify-center items-center flex-col gap-y-8  h-screen bg-[#E5C287]">
       <h1 className="text-lg font-bold"> Javascript Game</h1>
-      <div className="grid grid-cols-4 grid-rows-4 gap-4">
+      <div key={key} className="grid grid-cols-4 grid-rows-4 gap-4">
         {list &&
           array.map((item, index) => (
             <FlipHoverEffect
@@ -110,6 +110,7 @@ const App: React.FC = () => {
               foundItem={foundItem}
               selection={selection}
               isInteractive={disableAllButton}
+              openAll={openAll}
             />
           ))}
       </div>

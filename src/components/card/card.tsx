@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const SquareComponent: React.FC<{
@@ -8,6 +8,7 @@ const SquareComponent: React.FC<{
   selection: { firstSelect: number | null; secondSelect: number | null };
   foundItem: number[];
   isInteractive: boolean;
+  openAll: boolean;
 }> = ({
   handleSelection,
   id,
@@ -15,7 +16,9 @@ const SquareComponent: React.FC<{
   foundItem,
   isInteractive,
   selection,
+  openAll,
 }) => {
+  const isFirstRender = useRef(true);
   const [isFlipped, setIsFlipped] = useState(false);
 
   // useEffect(() => {
@@ -35,6 +38,7 @@ const SquareComponent: React.FC<{
     }
     setIsFlipped(false);
   }, [closeAll]);
+
 
   const handleOnClick = () => {
     if (foundItem.includes(id) || isInteractive) return;
