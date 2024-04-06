@@ -21,9 +21,9 @@ const SquareComponent: React.FC<{
   const isFirstRender = useRef(true);
   const [isFlipped, setIsFlipped] = useState(false);
 
-  // useEffect(() => {
-  //   console.log("isInteractive", isInteractive);
-  // }, [isInteractive]);
+  useEffect(() => {
+    console.log("isFlipped", isFlipped);
+  }, [isFlipped]);
 
   const handleSquareClick = () => {
     if (foundItem.includes(id) || isInteractive) {
@@ -41,7 +41,11 @@ const SquareComponent: React.FC<{
 
   const handleOnClick = () => {
     if (foundItem.includes(id) || isInteractive) return;
-    handleSelection(id);
+    if (isFlipped) {
+      handleSelection(0);
+    } else {
+      handleSelection(id);
+    }
   };
 
   return (

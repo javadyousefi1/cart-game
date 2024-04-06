@@ -68,6 +68,8 @@ const App: React.FC = () => {
     // setSelction(newSelect);
     if (selection.firstSelect === null) {
       setSelction({ firstSelect: newSelect, secondSelect: null });
+    } else if (newSelect === 0) {
+      setSelction({ firstSelect: null, secondSelect: null });
     } else if (selection.firstSelect && selection.secondSelect === null) {
       setSelction((prev) => {
         return { ...prev, secondSelect: newSelect };
@@ -101,7 +103,7 @@ const App: React.FC = () => {
       <h1 className="text-lg font-bold"> Javascript Game</h1>
       <div key={key} className="grid grid-cols-4 grid-rows-4 gap-4">
         {list &&
-          array.map((item, index) => (
+          list.map((item, index) => (
             <FlipHoverEffect
               key={index}
               handleSelection={handleSelection}
