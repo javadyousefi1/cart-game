@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const SquareComponent: React.FC<{
-  handleSelection: (newSelect: number) => void;
+  handleSelection: (newSelect: number | null) => void;
   id: number;
   closeAll: boolean;
   selection: { firstSelect: number | null; secondSelect: number | null };
@@ -38,7 +38,6 @@ const SquareComponent: React.FC<{
     }
     setIsFlipped(false);
   }, [closeAll]);
-
 
   const handleOnClick = () => {
     if (foundItem.includes(id) || isInteractive) return;
